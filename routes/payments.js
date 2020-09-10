@@ -5,7 +5,7 @@ const Payment = require('../models/Payment');
 paymentRouter.get('/', async (req, res, next) => {
     const payments = await Payment.find({});
     if(payments) {
-        res.status(200).send(payments);
+        res.status(200).json({payments});
     } else {
         res.sendStatus(500);
     }
@@ -29,7 +29,7 @@ paymentRouter.get('/:paymentId', (req, res, next) => {
         if(err) {
             next(err);
         } else {
-            res.status(200).send(payment);
+            res.status(200).json({payment});
         }
     });
 });

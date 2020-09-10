@@ -6,7 +6,7 @@ const Lesson = require('../models/Lesson');
 lessonRouter.get('/', async (req, res, next) => {
     const response = await Lesson.find({});
     if(response) {
-        res.status(200).send(response);
+        res.status(200).json({lessons: response});
     } else {
         res.sendStatus(500);
     }
@@ -28,7 +28,7 @@ lessonRouter.get('/:lessonId', (req, res, next) => {
         if(err) {
             next(err);
         } else {
-            res.status(200).send(lesson);
+            res.status(200).json({lesson});
         }
     });
 });
